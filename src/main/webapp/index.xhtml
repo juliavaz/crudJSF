@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastrar Pessoas</title>
+	<style type="text/css">
+.ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell
+	{
+	text-align: center;
+}
+
+.customPanelGrid .ui-panelgrid-content {
+	align-items: center;
+}
+</style>
+</h:head>
+<h:body>
+	<h:outputStylesheet name="primeicons/primeicons.css"
+		library="primefaces" />
+	<p:breadCrumb   >
+		<p:menuitem value="Categories" url="#" />
+		<p:menuitem value="Página de cadastro" url="#formulario" />
+		<p:menuitem value="Contatos cadastrados" url="#cadastrados" />
+		<p:menuitem value="Contatos cadastrados no Banco"
+			url="#cadastradosBanco" />
+	</p:breadCrumb>
+
+	<p:row color="white">
+		<h:outputText value="&#160;" />
+	</p:row>
+	<!-- linha vazia -->
+
+	<p:fieldset legend="Página de cadastro">
+		<h:form id="formulario">
+			<p:panel>
+				<h:panelGrid>
+					<p:row>
+						<!-- Nome -->
+						<p:column>
+							<p:outputLabel value="Digite seu nome: " />							
+						</p:column>
+						<p:inputText value="#{pb.pessoa.nomePessoa}" />
+					</p:row>
+					<p:row>
+						<!-- Email -->
+						<p:column>
+							<p:outputLabel value="Digite seu e-mail:  " />
+						</p:column>
+						<p:inputText value="#{pb.pessoa.emailPessoa}" />
+					</p:row>
+					<p:row>
+						<!-- CPF -->
+						<p:column>
+							<p:outputLabel value="Digite seu CPF: " />
+						</p:column>
+						<p:inputMask mask="999.999.999-99" value="#{pb.pessoa.cpfPessoa}" />
+					</p:row>
+					<p:row>
+						<!-- Endereço -->
+						<p:column>
+							<p:outputLabel value="Digite seu Endereço: " />
+						</p:column>
+						<p:inputText value="#{pb.pessoa.enderecoPessoa}" />
+					</p:row>
+					<p:row>
+						<!-- Telefone -->
+						<p:column>
+							<p:outputLabel value="Digite seu Telefone: " />
+						</p:column>
+						<p:inputMask mask="(99)99999-9999" value="#{pb.pessoa.telefone}" />
+					</p:row>
+					<p:row>
+						<!-- Sexo -->
+						<p:column>
+							<p:outputLabel value="Escolha seu sexo: " />
+						</p:column>
+						<p:selectOneRadio value="#{pb.pessoa.sexoPessoa}">
+							<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+							<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+						</p:selectOneRadio>
+					</p:row>
+					<p:row>
+						<p:commandButton value="Cadastrar" action="#{pb.adicionar}"
+							update="formulario tabela">
+						</p:commandButton>
+						<p:commandButton value="Listar cadastros do banco"
+							action="#{pb.listar}" update="formulario tabela2" />
+					</p:row>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+		
+
+	</p:fieldset>
+
+	<p:row color="white">
+		<h:outputText value="&#160;" />
+	</p:row>
+	<!-- linha vazia -->
+	<p:fieldset legend="Contatos cadastrados" id="cadastrados">
+		<p:dataTable value="#{pb.pessoas}" var="pes" border="1" id="tabela">
+			<p:column headerText="Nome">#{pes.nomePessoa}</p:column>
+			<p:column headerText="E-mail">#{pes.emailPessoa}</p:column>
+			<p:column headerText="CPF">#{pes.cpfPessoa}</p:column>
+			<p:column headerText="Endereço">#{pes.enderecoPessoa}</p:column>
+			<p:column headerText="Telefone">#{pes.telefone}</p:column>
+			<p:column headerText="Sexo">#{pes.sexoPessoa}</p:column>
+		</p:dataTable>
+	</p:fieldset>
+	<p:row color="white">
+		<h:outputText value="&#160;" />
+	</p:row>
+	<!-- linha vazia -->
+	<p:fieldset legend="Contatos cadastrados no banco"
+		id="cadastradosBanco">
+		<p:dataTable value="#{pb.pessoas}" var="pes" border="1" id="tabela2">
+			<p:column headerText="Nome">#{pes.nomePessoa}</p:column>
+			<p:column headerText="E-mail">#{pes.emailPessoa}</p:column>
+			<p:column headerText="CPF">#{pes.cpfPessoa}</p:column>
+			<p:column headerText="Endereço">#{pes.enderecoPessoa}</p:column>
+			<p:column headerText="Telefone">#{pes.telefone}</p:column>
+			<p:column headerText="Sexo">#{pes.sexoPessoa}</p:column>
+			<p:column headerText="Opções">
+			 <p:row>
+				<p:commandButton value="Editar" action="#{pb.editar(pes)}"
+					update="formulario" />
+				<p:commandButton value="Deletar" action="#{pb.deletar(pes)}"
+					update="formulario" /></p:row>
+			</p:column>
+		</p:dataTable>
+	</p:fieldset>
+</h:body>
+</html>
