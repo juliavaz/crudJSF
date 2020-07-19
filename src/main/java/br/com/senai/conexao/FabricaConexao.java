@@ -13,8 +13,8 @@ public class FabricaConexao {
 	
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/db_cadastropessoas?useTimezone=true&serverTimezone=UTC&useSSL=false";
-	private static final String USER = "root";
-	private static final String PASS = "Senha do MYSQL";
+	private static final String USER = "";
+	private static final String PASS = "";
 	
 	// criar metodo publico para obter as conex�es
 	
